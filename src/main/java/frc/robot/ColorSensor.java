@@ -14,7 +14,7 @@ public class ColorSensor{
                 //turn left
                 //if nothing detected for a bit, turn right
             }
-            //drive forward
+            //drive forward for a little
         }
     }
 }
