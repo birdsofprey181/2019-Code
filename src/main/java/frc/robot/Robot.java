@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +24,9 @@ public class Robot extends IterativeRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+
+  public static Joystick driveStick = new Joystick(0);
+  public static Joystick opStick = new Joystick(1);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -95,6 +99,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void testPeriodic() {
     System.out.println("This is a test");
-    PneumaticsTest.grip();
+    PneumaticsTest.grip(driveStick, opStick);
+    PneumaticsTest.shiftGears(driveStick);
   }
 }
