@@ -2,7 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class PneumaticsTest {
 		static DoubleSolenoid gripperSol = new DoubleSolenoid(0, 2, 3);
