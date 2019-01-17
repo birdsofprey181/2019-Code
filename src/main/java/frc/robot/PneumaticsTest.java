@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class PneumaticsTest {
-		static DoubleSolenoid gripperSol = new DoubleSolenoid(0, 2, 3);
-		static DoubleSolenoid shifterSol = new DoubleSolenoid(0, 0, 1);
+		static DoubleSolenoid gripperSol = new DoubleSolenoid(2, 3);
+		static DoubleSolenoid shifterSol = new DoubleSolenoid(0, 1);
+		//static DoubleSolenoid testSol = new DoubleSolenoid(forwardChannel, reverseChannel)
     //static Joystick driveStick = new Joystick(0);
     //static Joystick opStick = new Joystick(1);
 
