@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class PneumaticsTest {
 		static DoubleSolenoid gripperSol = new DoubleSolenoid(2, 3);
 		static DoubleSolenoid shifterSol = new DoubleSolenoid(0, 1);
+		//static DoubleSolenoid testSol = new DoubleSolenoid(moduleNumber, forwardChannel, reverseChannel)
 		//static DoubleSolenoid testSol = new DoubleSolenoid(forwardChannel, reverseChannel)
     //static Joystick driveStick = new Joystick(0);
     //static Joystick opStick = new Joystick(1);
@@ -31,7 +32,7 @@ public class PneumaticsTest {
 			shifterSol.set(DoubleSolenoid.Value.kForward);
 		}
 		public static void lowGear() {
-			shifterSol.set(DoubleSolenoid.Value.kForward);
+			shifterSol.set(DoubleSolenoid.Value.kReverse);
 		}
 		public static void shiftGears(Joystick driveStick) {
 			if(driveStick.getRawButton(1) == true){
