@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class PneumaticsTest {
+public class Pneumatics {
 		static DoubleSolenoid gripperSol = new DoubleSolenoid(2, 3);
 		static DoubleSolenoid shifterSol = new DoubleSolenoid(0, 1);
 		//static DoubleSolenoid testSol = new DoubleSolenoid(moduleNumber, forwardChannel, reverseChannel)
