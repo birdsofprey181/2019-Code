@@ -101,5 +101,8 @@ public class Robot extends IterativeRobot {
     System.out.println("This is a test");
     Pneumatics.shiftGears(driveStick);
     Drivetrain.drive(driveStick.getY(), driveStick.getX());
+    Pneumatics.liftFront(driveStick);
+    Pneumatics.liftRear(driveStick);
+
   }
 }

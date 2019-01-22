@@ -39,4 +39,18 @@ public class Pneumatics {
 				lowGear();
 			}
 		}
+		public static void liftFront(Joystick driveStick){
+			if (driveStick.getRawButton(19) == true){
+				frontExtend();
+			}else{
+				frontRetract();
+			}
+		}
+		public static void liftRear(Joystick driveStick){
+			if (driveStick.getRawButton(20) == true){
+				rearExtend();
+			}else{
+				rearRetract();
+			}
+		}
 }
