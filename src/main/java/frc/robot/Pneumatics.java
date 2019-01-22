@@ -40,14 +40,14 @@ public class Pneumatics {
 			}
 		}
 		public static void liftFront(Joystick driveStick){
-			if (driveStick.getRawButton(19) == true){
+			if (driveStick.getRawButton(7) == true){
 				frontExtend();
 			}else{
 				frontRetract();
 			}
 		}
 		public static void liftRear(Joystick driveStick){
-			if (driveStick.getRawButton(20) == true){
+			if (driveStick.getRawButton(9) == true){
 				rearExtend();
 			}else{
 				rearRetract();
