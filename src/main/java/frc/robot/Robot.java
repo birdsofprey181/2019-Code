@@ -103,6 +103,6 @@ public class Robot extends TimedRobot {
     Drivetrain.drive(driveStick.getY(), driveStick.getX());
     Pneumatics.liftFront(driveStick);
     Pneumatics.liftRear(driveStick);
-
+    Drivetrain.sparkTest(-driveStick.getY());
   }
 }
