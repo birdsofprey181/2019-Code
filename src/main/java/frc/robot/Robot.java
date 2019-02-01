@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,6 +24,8 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+
+  public Joystick driveStick = new Joystick(0);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -94,7 +97,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    System.out.println("This is a test");
+    Drivetrain.sparkTest(driveStick.getY());
     //heck
   }
 }
