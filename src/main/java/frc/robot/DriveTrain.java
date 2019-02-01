@@ -14,7 +14,7 @@ public class Drivetrain {
     static VictorSP leftMotor = new VictorSP(1);
     static VictorSP rightMotor = new VictorSP(0);
 
-    static Spark sparkTest = new Spark(2);
+    //static Spark sparkTest = new Spark(2);
 
     static CANSparkMax sparkMotor = new CANSparkMax(2, MotorType.kBrushless);
     //static CANSparkMax sparkMotor2 = new CANSparkMax(3, MotorType.kBrushless);
@@ -36,6 +36,7 @@ public class Drivetrain {
     public static void sparkTest(double forward) {
         //sparkTest.setSpeed(forward);
         sparkMotor.set(forward);
+        //sparkTrain.arcadeDrive(forward, 0);
         System.out.println(encoder.getPosition());
     }
 }
