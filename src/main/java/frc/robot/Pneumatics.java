@@ -4,6 +4,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Pneumatics {
+
+	static boolean frontActive = false;
+	static boolean rearActive = false;
+
 	static DoubleSolenoid frontSol = new DoubleSolenoid(2, 3);
 	static DoubleSolenoid rearSol = new DoubleSolenoid(4, 5);
 	static DoubleSolenoid shifterSol = new DoubleSolenoid(0, 1);
@@ -38,7 +42,7 @@ public class Pneumatics {
 			lowGear();
 		}
 	}
-	public static void liftFront(Joystick driveStick){
+	/*public static void liftFront(Joystick driveStick){
 		if (driveStick.getRawButton(7) == true){
 			frontExtend();
 		}else{
@@ -49,6 +53,20 @@ public class Pneumatics {
 		if (driveStick.getRawButton(9) == true){
 			rearExtend();
 		}else{
+			rearRetract();
+		}
+	}*/
+	public static void toggleLift(Joystick driveStick){
+		if(driveStick.getRawButtonPressed(7) && (rearActive == false && frontActive == false)){
+			rearExtend();
+			rearActive = true;
+			frontExtend();
+			frontActive = true;
+		}
+		if(driveStick.getRawButtonPressed(8) && frontActive == true){
+			frontRetract();
+		}
+		if(driveStick.getRawButtonPressed(9) && rearActive == true){
 			rearRetract();
 		}
 	}

@@ -93,6 +93,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    Pneumatics.shiftGears(driveStick);
+    Pneumatics.shiftGears(driveStick2);
+    Drivetrain.drive(driveStick.getY(), driveStick.getX());
+    Drivetrain.drive(driveStick2.getY(), driveStick2.getZ());
+    Pneumatics.toggleLift(driveStick);
+    Pneumatics.toggleLift(driveStick2);
+    // Pneumatics.liftFront(driveStick);
+    // Pneumatics.liftRear(driveStick);
   }
 
   /**
@@ -100,11 +108,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    Pneumatics.shiftGears(driveStick);
-    Drivetrain.drive(driveStick.getY(), driveStick.getX());
-    Drivetrain.drive(driveStick2.getY(), driveStick2.getZ());
-    Pneumatics.liftFront(driveStick);
-    Pneumatics.liftRear(driveStick);
     Drivetrain.sparkTest(-driveStick.getY());
   }
 }
