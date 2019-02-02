@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
 
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opStick = new Joystick(1);
+  public static Joystick driveStick2 = new Joystick(2);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -101,6 +102,7 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
     Pneumatics.shiftGears(driveStick);
     Drivetrain.drive(driveStick.getY(), driveStick.getX());
+    Drivetrain.drive(driveStick2.getY(), driveStick2.getZ());
     Pneumatics.liftFront(driveStick);
     Pneumatics.liftRear(driveStick);
     Drivetrain.sparkTest(-driveStick.getY());
