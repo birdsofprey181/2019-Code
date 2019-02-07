@@ -8,7 +8,7 @@ import org.opencv.imgproc.Imgproc;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.cameraserver.CameraServer;
 
 public class Camera extends Thread {
 	//Public non-changable variables telling Camera dimensions.
