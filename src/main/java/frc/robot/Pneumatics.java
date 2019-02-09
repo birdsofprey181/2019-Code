@@ -8,7 +8,6 @@ public class Pneumatics {
 	public static boolean frontActive = false;
 	public static boolean rearActive = false;
 
-	public static int[] buttonMap = new int[2];
 
 	static DoubleSolenoid frontSol = new DoubleSolenoid(2, 3);
 	static DoubleSolenoid rearSol = new DoubleSolenoid(4, 5);
