@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   //modifided code of barlowrobotics-2018-code
-  public static final LimeVisionSubsystem limeVisionSubsystem = new LimeVisionSubsystem();
+
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
