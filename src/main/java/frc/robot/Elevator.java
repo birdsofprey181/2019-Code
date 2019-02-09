@@ -13,7 +13,7 @@ public class Elevator {
     public static void resetElevEncoder(){
         elevEncoder.reset();
     }
-
+    //example code, not used in the final code
     public static void elevEncoderTest(){
         double elevDistance = elevEncoder.getDistance();
         double topDist = 5.0;
