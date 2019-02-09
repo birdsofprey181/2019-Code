@@ -94,6 +94,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Elevator.elevControl(opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
+    Elevator.elevEncoderTest(opStick);
   }
 
   /**

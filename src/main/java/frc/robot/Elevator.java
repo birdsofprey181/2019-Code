@@ -13,17 +13,34 @@ public class Elevator {
     public static void resetElevEncoder(){
         elevEncoder.reset();
     }
+
+    public static void elevEncoderRaise(double elevDistance, double setDistance){
+        if(elevDistance < setDistance) {
+            elevEncoder.setReverseDirection(false);
+            while(elevDistance < setDistance){
+                elevControl(5);
+                elevDistance = elevEncoder.getDistance();
+            }
+        }else if(elevDistance > setDistance){
+            elevEncoder.setReverseDirection(true);
+            while(elevDistance > setDistance){
+                elevControl(-5);
+                elevDistance = elevEncoder.getDistance();
+            }
+        }
+    }
     //example code, not used in the final code
-    public static void elevEncoderTest(){
+    public static void elevEncoderTest(Joystick opStick){
         double elevDistance = elevEncoder.getDistance();
         double topDist = 5.0;
         double midDist = 2.5;
         double botDist = 0.0;
-        if(elevDistance < topDist) {
-            while(elevDistance < topDist){
-                elevControl(5);
-                elevDistance = elevEncoder.getDistance();
-            }
+        if(opStick.getRawButton(2) == true) {
+            elevEncoderRaise(elevDistance, topDist);
+        }else if (opStick.getRawButton(3) == true) {
+            elevEncoderRaise(elevDistance, midDist);
+        }else if(opStick.getRawButton(4) == true){
+            elevEncoderRaise(elevDistance, botDist);
         }
     }
 
