@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team181.robot.subsystems;
 import oi.limelightvision.limelight.frc.LimeLight;
 import oi.limelightvision.limelight.frc.ControlMode.*;
+import sun.tools.jconsole.ProxyClient.Snapshot;
 
 
 /**
@@ -23,7 +24,7 @@ import oi.limelightvision.limelight.frc.ControlMode.*;
  * project.
  */
 public class Robot extends IterativeRobot {
-  public static final 181LimeLight _181limelight = new 181LimeLight("http://10.1.81.56:5801/");
+  public static final 181LimeLight _181limelight = new 181LimeLight("http://10.1.81.56:5800/");
   //public static final for the lime light
   @Override
   public void robotPeriodic(){
@@ -35,6 +36,9 @@ public class Robot extends IterativeRobot {
     //setters
     _181limelight.setPipeline(1);
     _181limelight.setLEDMode(Ledmode.kforceoff);
+    _181limelight.setCamMode(CamMode.kdriver);
+    _181limelight.setSnapshot(Snapshot.kon);
+    _181limelight.setStream(StreamType.kPiPMain);
 
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
