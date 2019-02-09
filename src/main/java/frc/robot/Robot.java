@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team181.robot.subsystems;
+import oi.limelightvision.limelight.frc.LimeLight;
+import oi.limelightvision.limelight.frc.ControlMode.*;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,10 +23,22 @@ import org.usfirst.frc.team181.robot.subsystems;
  * project.
  */
 public class Robot extends IterativeRobot {
+  public static final 181LimeLight _181limelight = new 181LimeLight("http://10.1.81.56:5801/");
+  //public static final for the lime light
+  @Override
+  public void robotPeriodic(){
+    //getters
+    SmartDashboard.putBoolean("Target Found", _181limelight.getIsTargetFound());
+    SmartDashboard.putNumber("Deg Rotation to Target", _181limelight.get.DegRotationToTarget());
+    //.... and more
+
+    //setters
+    _181limelight.setPipeline(1);
+    _181limelight.setLEDMode(Ledmode.kforceoff);
+
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-  //modifided code of barlowrobotics-2018-code
-
+  //modifided code of GraniteCityGearheads3244
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
