@@ -54,7 +54,7 @@ public class VisionSystem {
     }
 
     public void driveToHatchTarget(double tx, double y, Joystick opStick) { // moves robot towards a cargo ship or rocket hatch target
-        while (!opStick.getRawButton(5)) {
+        while (!opStick.getRawButton(5)) { // hit 5 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceHatch(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
@@ -64,7 +64,7 @@ public class VisionSystem {
         }  
     }
     public void driveToRocketFaceTarget(double x, double y, Joystick opStick) { // moves robot towards a rocket face target
-        while (!opStick.getRawButton(6)) {
+        while (!opStick.getRawButton(6)) { // hit 6 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceRocketFace(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
