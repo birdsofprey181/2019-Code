@@ -44,17 +44,17 @@ public class VisionSystem {
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
     
-    public void operateVisionTracking(Joystick opStick) {
-        if (opStick.getRawButton(5)) { // button 5 aligns with hatch
-            driveToHatchTarget(x, y, opStick);
+    public void operateVisionTracking(Joystick driveStick) {
+        if (driveStick.getRawButton(3)) { // button 3 aligns with hatch
+            driveToHatchTarget(x, y, driveStick);
         }
-        if (opStick.getRawButton(6)) { // buttton 6 aligns to rocket face
-            driveToRocketFaceTarget(x, y, opStick);
+        if (driveStick.getRawButton(5)) { // buttton 5 aligns to rocket face
+            driveToRocketFaceTarget(x, y, driveStick);
         }
     }
 
-    public void driveToHatchTarget(double tx, double y, Joystick opStick) { // moves robot towards a cargo ship or rocket hatch target
-        while (!opStick.getRawButton(5)) { // hit 5 to stop the auto
+    public void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
+        while (!driveStick.getRawButton(3)) { // hit 3 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceHatch(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
@@ -63,8 +63,8 @@ public class VisionSystem {
             }
         }  
     }
-    public void driveToRocketFaceTarget(double x, double y, Joystick opStick) { // moves robot towards a rocket face target
-        while (!opStick.getRawButton(6)) { // hit 6 to stop the auto
+    public void driveToRocketFaceTarget(double x, double y, Joystick driveStick) { // moves robot towards a rocket face target
+        while (!driveStick.getRawButton(5)) { // hit 5 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceRocketFace(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
