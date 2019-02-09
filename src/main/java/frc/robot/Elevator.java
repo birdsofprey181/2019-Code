@@ -16,11 +16,19 @@ public class Elevator {
 
     public static void elevEncoderTest(){
         double elevDistance = elevEncoder.getDistance();
-        
+        double topDist = 5.0;
+        double midDist = 2.5;
+        double botDist = 0.0;
+        if(elevDistance < topDist) {
+            while(elevDistance < topDist){
+                elevControl(5);
+                elevDistance = elevEncoder.getDistance();
+            }
+        }
     }
 
-    public static void elevControl(Joystick opStick) {
-        elevator.set(opStick.getY());
+    public static void elevControl(double up) {
+        elevator.set(up);
     }
 
 
