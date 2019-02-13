@@ -7,13 +7,13 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team181.robot.subsystems;
-import oi.limelightvision.limelight.frc.LimeLight;
-import oi.limelightvision.limelight.frc.ControlMode.*;
-import sun.tools.jconsole.ProxyClient.Snapshot;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+//....import sun.tools.jconsole.ProxyClient.Snapshot;
 
 
 /**
@@ -23,26 +23,9 @@ import sun.tools.jconsole.ProxyClient.Snapshot;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends IterativeRobot {
-  public static final 181LimeLight _181limelight = new 181LimeLight("http://10.1.81.56:5800/");
-  //public static final for the lime light
-  @Override
-  public void robotPeriodic(){
-    //getters
-    SmartDashboard.putBoolean("Target Found", _181limelight.getIsTargetFound());
-    SmartDashboard.putNumber("Deg Rotation to Target", _181limelight.get.DegRotationToTarget());
-    //.... and more
-
-    //setters
-    _181limelight.setPipeline(1);
-    _181limelight.setLEDMode(Ledmode.kforceoff);
-    _181limelight.setCamMode(CamMode.kdriver);
-    _181limelight.setSnapshot(Snapshot.kon);
-    _181limelight.setStream(StreamType.kPiPMain);
-
+public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-  //modifided code of GraniteCityGearheads3244
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -67,6 +50,7 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void robotPeriodic() {
+    
   }
 
   /**
