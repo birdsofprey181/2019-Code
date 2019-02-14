@@ -15,10 +15,10 @@ public class Drivetrain {
 
     static Spark sparkTest = new Spark(2);
 
-    static CANSparkMax sparkMotor = new CANSparkMax(2, MotorType.kBrushless);
-    static CANSparkMax sparkMotor2 = new CANSparkMax(3, MotorType.kBrushless);
+    //static CANSparkMax sparkMotor = new CANSparkMax(2, MotorType.kBrushless);
+    //static CANSparkMax sparkMotor2 = new CANSparkMax(3, MotorType.kBrushless);
 
-    static DifferentialDrive sparkTrain = new DifferentialDrive(sparkMotor, sparkMotor2);
+    // static DifferentialDrive sparkTrain = new DifferentialDrive(sparkMotor, sparkMotor2);
 
     static DifferentialDrive driveTrain = new DifferentialDrive(leftMotor, rightMotor);
 

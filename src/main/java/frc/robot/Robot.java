@@ -7,7 +7,10 @@
 
 package frc.robot;
 
+<<<<<<< HEAD
 //import edu.wpi.first.wpilibj.IterativeRobot;
+=======
+>>>>>>> 406fe1d05791de305b98d9748d8b0ed24e117bff
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,9 +29,12 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+<<<<<<< HEAD
   @SuppressWarnings("unused")
   private Camera cam = new Camera("stream");
 
+=======
+>>>>>>> 406fe1d05791de305b98d9748d8b0ed24e117bff
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opStick = new Joystick(1);
 
@@ -38,6 +44,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    Elevator.resetElevEncoder();
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
@@ -97,10 +104,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    Drivetrain.drive(driveStick.getY(), driveStick.getZ());
     Pneumatics.toggleLift(driveStick);
     //Pneumatics.liftFront(driveStick);
     //Pneumatics.liftRear(driveStick);
+    Elevator.elevControl(opStick.getY());
+    Drivetrain.drive(driveStick.getY(), driveStick.getZ());
+    Elevator.elevEncoderTest(opStick);
   }
 
   /**
