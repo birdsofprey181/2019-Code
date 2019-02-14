@@ -103,7 +103,7 @@ public class Robot extends TimedRobot {
     //Pneumatics.liftRear(driveStick);
     Elevator.elevControl(opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
-    Elevator.elevEncoderTest(opStick);
+    // Elevator.elevEncoderTest(opStick);
   }
 
   /**
@@ -111,7 +111,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    //super heck
-    Drivetrain.sparkTest(-driveStick.getY());
+    
   }
 }
