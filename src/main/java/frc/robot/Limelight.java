@@ -46,4 +46,11 @@ public class Limelight{
     public double getArea(){
         return this.Area;
     }
+    public class myThread extends Thread {
+        public void main(String args[]){
+            Thread thread = new Thread();
+            thread.start();
+        }
+       
+    }
 }
