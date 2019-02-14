@@ -102,7 +102,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    System.out.println("This is a test");
+    Elevator.encoderTest();
     //heck
   }
 }

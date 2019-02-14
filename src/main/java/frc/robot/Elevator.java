@@ -14,6 +14,10 @@ public class Elevator {
         elevEncoder.reset();
     }
 
+    public static void encoderTest(){
+        System.out.println(elevEncoder.getDistance());
+    }
+
     public static void elevEncoderRaise(double elevDistance, double setDistance){
         if(elevDistance < setDistance) {
             elevEncoder.setReverseDirection(false);
