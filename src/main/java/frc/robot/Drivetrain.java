@@ -4,14 +4,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.Spark;
+// import edu.wpi.first.wpilibj.Spark;
 
 public class Drivetrain {
 
     static VictorSP leftMotor = new VictorSP(1);
     static VictorSP rightMotor = new VictorSP(0);
-
-    static Spark sparkTest = new Spark(2);
 
     //static CANSparkMax sparkMotor = new CANSparkMax(2, MotorType.kBrushless);
     //static CANSparkMax sparkMotor2 = new CANSparkMax(3, MotorType.kBrushless);
@@ -28,7 +26,4 @@ public class Drivetrain {
         driveTrain.arcadeDrive(-forward, turn);
     }
 
-    public static void sparkTest(double forward) {
-        sparkTest.setSpeed(forward);
-    }
 }
