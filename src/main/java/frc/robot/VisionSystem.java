@@ -5,10 +5,10 @@ Vision tracking and alignment system - will
 
 READ BEFORE RUNNING
 
-as of 2-7-19, the limelight is mounted, as such some distances are dependent on measurements
-that need to be taken once the limelight is finally secured and connectedo the robot.
+as of 2-7-19, the limelight is not mounted, and some distances are dependent on measurements
+that need to be taken once the limelight is finally secured and connected to the robot.
 Anything that says "CHANGE when limelight is mounted" should be updated once the limelight is mounted along
-with any speeds. As I am writing this code I am just speculating how fastwe want the robot to go
+with any speeds. As I am writing this code I am just speculating how fast we want the robot to go
 
 because there are 2 different hieghts of vision targets, there are 2 methods; one for the cargo hold and
 rocket hatch height (both under names related to "Hatch") and another for the front rocket face (under names
