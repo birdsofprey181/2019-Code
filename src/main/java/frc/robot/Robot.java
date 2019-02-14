@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team181.robot.subsystems;
+// import org.usfirst.frc.team181.robot.subsystems;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   //modifided code of barlowrobotics-2018-code
-  public static final LimeVisionSubsystem limeVisionSubsystem = new LimeVisionSubsystem();
+  // public static final LimeVisionSubsystem limeVisionSubsystem = new LimeVisionSubsystem();
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 

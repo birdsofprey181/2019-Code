@@ -1,6 +1,6 @@
-package frc.robot;
+// package frc.robot;
 
-@Override;
-NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").getDouble(1){
+// @Override;
+// NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").getDouble(1){
     
-}
+// }

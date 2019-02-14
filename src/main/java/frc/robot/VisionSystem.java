@@ -40,9 +40,9 @@ public class VisionSystem {
     double cameraAngle = Math.PI * .25; // in radians, CHANGE when limelight is mounted
 
     //post to smart dashboard periodically
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
+    // SmartDashboard.putNumber("LimelightX", x);
+    // SmartDashboard.putNumber("LimelightY", y);
+    // SmartDashboard.putNumber("LimelightArea", area);
     
     public void operateVisionTracking(Joystick driveStick) {
         if (driveStick.getRawButton(3)) { // button 3 aligns with hatch
@@ -59,7 +59,7 @@ public class VisionSystem {
             double distance = findDistanceHatch(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
             while(distance > stopAtDistance) {
-                DriveTrain.drive(.5, 0);
+                Drivetrain.drive(.5, 0);
             }
         }  
     }
@@ -69,7 +69,7 @@ public class VisionSystem {
             double distance = findDistanceRocketFace(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
             while(distance > stopAtDistance) {
-                DriveTrain.drive(.5, 0);
+                Drivetrain.drive(.5, 0);
             }
         }
     }
@@ -77,11 +77,11 @@ public class VisionSystem {
         //values of x range [-27,27]
         if (x < -1) { // target is to the left
             while(x < -1) {
-                DriveTrain.drive(0, .25); // turn right until aligned
+                Drivetrain.drive(0, .25); // turn right until aligned
             }
         } else if (x > 1) { // target to the right
             while(x > 1) {
-                DriveTrain.drive(0, -.25); // turn left until aligned
+                Drivetrain.drive(0, -.25); // turn left until aligned
             }
         }
     }
@@ -92,7 +92,7 @@ public class VisionSystem {
         double fullAngle = a2 + cameraAngle;
         double demoninator = Math.tan(fullAngle);
         if (fullAngle != 0){
-            distance = heightDifference/fullAngle;
+            distance = heightDifference/demoninator;
         }
         return distance;
     }
@@ -103,7 +103,7 @@ public class VisionSystem {
         double fullAngle = a2 + cameraAngle;
         double demoninator = Math.tan(fullAngle);
         if (fullAngle != 0){
-            distance = heightDifference/fullAngle;
+            distance = heightDifference/demoninator;
         }
         return distance;
     }
