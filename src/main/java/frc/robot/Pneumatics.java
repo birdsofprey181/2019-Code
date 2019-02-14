@@ -2,13 +2,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 public class Pneumatics {
 
 	public static boolean frontActive = false;
 	public static boolean rearActive = false;
 
-	public static int[] buttonMap = new int[2];
+	public static Timer liftDelay = new Timer();
 
 	static DoubleSolenoid frontSol = new DoubleSolenoid(2, 3);
 	static DoubleSolenoid rearSol = new DoubleSolenoid(4, 5);
@@ -41,13 +43,16 @@ public class Pneumatics {
 	}
 	public static void toggleLift(Joystick driveStick){
 		if(driveStick.getRawButtonPressed(7) == true){
-			rearActive = true;
 			frontActive = true;
-		}
-		if(driveStick.getRawButtonPressed(8) == true){
-			frontActive = false;
+			// try{
+				// TimeUnit.SECONDS.sleep(3);
+			// }catch(InterruptedException wack){}
+			rearActive = true;
 		}
 		if(driveStick.getRawButtonPressed(9) == true){
+			frontActive = false;
+		}
+		if(driveStick.getRawButtonPressed(11) == true){
 			rearActive = false;
 		} 
 		if (rearActive == true){

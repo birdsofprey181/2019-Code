@@ -98,9 +98,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
-    //Pneumatics.toggleLift(driveStick);
-    Pneumatics.liftFront(driveStick);
-    Pneumatics.liftRear(driveStick);
+    Pneumatics.toggleLift(driveStick);
+    //Pneumatics.liftFront(driveStick);
+    //Pneumatics.liftRear(driveStick);
   }
 
   /**
