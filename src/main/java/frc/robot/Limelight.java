@@ -6,6 +6,8 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import java.lang.Number;
+import edu.wpi.first.wpilibj.DriverStation   
+
 
 public class Limelight{
     // Variables for the limelight class
@@ -15,22 +17,7 @@ public class Limelight{
     public double Area;
 
     public Limelight (){
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-        NetworkTableEntry targetFound = table.getEntry("targetFound");
-        NetworkTableEntry XAxis = table.getEntry("XAxis");
-        NetworkTableEntry YAxis = table.getEntry("YAxis");
-        NetworkTableEntry Area = table.getEntry("Area");
-        
-
-        if (targetFound.getNumber(0).intValue() == 1){
-            this.targetFound = true;
-        }
-        else if (targetFound.getNumber(0).intValue() == 0){
-            this.targetFound = false;
-        } 
-        this.XAxis = XAxis.getDouble(0.0);
-        this.YAxis = YAxis.getDouble(0.0);
-        this.Area = Area.getDouble(0.0);
+        mylimeLightloop.start();
     }
 
     public boolean gettargetFound(){
@@ -46,11 +33,30 @@ public class Limelight{
     public double getArea(){
         return this.Area;
     }
-    public class myThread extends Thread {
-        public void main(String args[]){
-            Thread thread = new Thread();
-            thread.start();
-        }
-       
+
+    Thread limeLightloop = new Thread(){
+        public void run(){
+                while(driverstation.isenabled){
+                    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+                    NetworkTableEntry targetFound = table.getEntry("targetFound");
+                    NetworkTableEntry XAxis = table.getEntry("XAxis");
+                    NetworkTableEntry YAxis = table.getEntry("YAxis");
+                    NetworkTableEntry Area = table.getEntry("Area");
+                    
+                    if (targetFound.getNumber(0).intValue() == 1){
+                        this.targetFound = true;
+                    }
+                    else if (targetFound.getNumber(0).intValue() == 0){
+                        this.targetFound = false;
+                    } 
+
+                    this.XAxis = XAxis.getDouble(0.0);
+                    this.YAxis = YAxis.getDouble(0.0);
+                    this.Area = Area.getDouble(0.0);
+                    
+                }
+            }
     }
+
 }
+    
