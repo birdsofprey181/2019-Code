@@ -45,16 +45,16 @@ public class VisionSystem {
     // SmartDashboard.putNumber("LimelightArea", area);
     
     public void operateVisionTracking(Joystick driveStick) {
-        if (driveStick.getRawButton(3)) { // button 3 aligns with hatch
+        if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
             driveToHatchTarget(x, y, driveStick);
         }
-        if (driveStick.getRawButton(5)) { // buttton 5 aligns to rocket face
+        if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
             driveToRocketFaceTarget(x, y, driveStick);
         }
     }
 
     public void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
-        while (!driveStick.getRawButton(3)) { // hit 3 to stop the auto
+        while (!driveStick.getRawButton(4)) { // hit 4 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceHatch(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
@@ -64,7 +64,7 @@ public class VisionSystem {
         }  
     }
     public void driveToRocketFaceTarget(double x, double y, Joystick driveStick) { // moves robot towards a rocket face target
-        while (!driveStick.getRawButton(5)) { // hit 5 to stop the auto
+        while (!driveStick.getRawButton(6)) { // hit 6 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceRocketFace(y);
             double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
