@@ -36,21 +36,23 @@ public class Elevator {
     //example code, not used in the final code
     public static void elevEncoderTest(Joystick opStick){
         double elevDistance = elevEncoder.getDistance();
-        double topDist = 5.0;
+        double topDist = 2177.0;
         double midDist = 2.5;
         double botDist = 0.0;
-        if(opStick.getRawButton(2) == true) {
+        if(opStick.getRawButton(8) == true) {
             elevEncoderRaise(elevDistance, topDist);
-        }else if (opStick.getRawButton(3) == true) {
+        }else if (opStick.getRawButton(10) == true) {
             elevEncoderRaise(elevDistance, midDist);
-        }else if(opStick.getRawButton(4) == true){
+        }else if(opStick.getRawButton(12) == true){
             elevEncoderRaise(elevDistance, botDist);
         }
     }
 
     public static void elevControl(double up) {
         elevator.set(up);
+        if(elevEncoder.getDistance() < 5.0 && elevEncoder.getDistance() > -5.0){
+            resetElevEncoder();
+        }
     }
-
 
 }
