@@ -1,5 +1,7 @@
 package frc.robot;
 
+// hatch solenoids by will
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -10,7 +12,7 @@ public class Pneumatics {
 
 	static DoubleSolenoid frontSol = new DoubleSolenoid(2, 3);
 	static DoubleSolenoid rearSol = new DoubleSolenoid(4, 5);
-	static DoubleSolenoid shifterSol = new DoubleSolenoid(0, 1);
+	static DoubleSolenoid hatchSol = new DoubleSolenoid(0, 1);
 	//static DoubleSolenoid testSol = new DoubleSolenoid(moduleNumber, forwardChannel, reverseChannel)
 	//static DoubleSolenoid testSol = new DoubleSolenoid(forwardChannel, reverseChannel)
     //static Joystick driveStick = new Joystick(0);
@@ -28,18 +30,18 @@ public class Pneumatics {
 	public static void rearRetract() {
 		rearSol.set(DoubleSolenoid.Value.kReverse);
 	}
-	public static void highGear() {
-		shifterSol.set(DoubleSolenoid.Value.kForward);
+	public static void pushHatch() {
+		hatchSol.set(DoubleSolenoid.Value.kForward);
 	}
-	public static void lowGear() {
-		shifterSol.set(DoubleSolenoid.Value.kReverse);
+	public static void pullHatch() {
+		hatchSol.set(DoubleSolenoid.Value.kReverse);
 	}
-	public static void shiftGears(Joystick driveStick) {
+	public static void detatchHatch(Joystick driveStick) {
 		if(driveStick.getRawButton(1) == true){
-			highGear();
+			pushHatch();
 		}
 		else{
-			lowGear();
+			pullHatch();
 		}
 	}
 	/*public static void liftFront(Joystick driveStick){
