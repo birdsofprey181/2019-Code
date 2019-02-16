@@ -4,11 +4,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 public class Pneumatics {
 
-	static boolean frontActive = false;
-	static boolean rearActive = false;
+	public static boolean frontActive = false;
+	public static boolean rearActive = false;
+
+	public static Timer liftDelay = new Timer();
 
 	static DoubleSolenoid frontSol = new DoubleSolenoid(2, 3);
 	static DoubleSolenoid rearSol = new DoubleSolenoid(4, 5);
@@ -57,19 +61,30 @@ public class Pneumatics {
 		}else{
 			rearRetract();
 		}
-	}*/
+	}
 	public static void toggleLift(Joystick driveStick){
-		if(driveStick.getRawButtonPressed(7) && (rearActive == false && frontActive == false)){
-			rearExtend();
-			rearActive = true;
-			frontExtend();
+		if(driveStick.getRawButtonPressed(7) == true){
 			frontActive = true;
+			// try{
+				// TimeUnit.SECONDS.sleep(3);
+			// }catch(InterruptedException wack){}
+			rearActive = true;
 		}
-		if(driveStick.getRawButtonPressed(8) && frontActive == true){
-			frontRetract();
+		if(driveStick.getRawButtonPressed(9) == true){
+			frontActive = false;
 		}
-		if(driveStick.getRawButtonPressed(9) && rearActive == true){
+		if(driveStick.getRawButtonPressed(11) == true){
+			rearActive = false;
+		} 
+		if (rearActive == true){
+			rearExtend();
+		} else if (rearActive == false){
 			rearRetract();
+		}
+		if (frontActive == true){
+			frontExtend();
+		} else if (frontActive == false){
+			frontRetract();
 		}
 	}
 }

@@ -26,9 +26,11 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  @SuppressWarnings("unused")
+  private Camera cam = new Camera("stream");
+
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opStick = new Joystick(1);
-  public static Joystick driveStick2 = new Joystick(2);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -39,6 +41,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    //Pneumatics.frontActive = false;
+    //Pneumatics.rearActive = false;
   }
 
   /**
@@ -93,14 +97,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    Pneumatics.shiftGears(driveStick);
-    Pneumatics.shiftGears(driveStick2);
-    Drivetrain.drive(driveStick.getY(), driveStick.getX());
-    Drivetrain.drive(driveStick2.getY(), driveStick2.getZ());
+    Drivetrain.drive(driveStick.getY(), driveStick.getZ());
     Pneumatics.toggleLift(driveStick);
-    Pneumatics.toggleLift(driveStick2);
-    // Pneumatics.liftFront(driveStick);
-    // Pneumatics.liftRear(driveStick);
+    //Pneumatics.liftFront(driveStick);
+    //Pneumatics.liftRear(driveStick);
   }
 
   /**
