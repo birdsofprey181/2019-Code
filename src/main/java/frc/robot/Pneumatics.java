@@ -48,7 +48,7 @@ public class Pneumatics {
 			pullHatch();
 		}
 	}
-	/*public static void liftFront(Joystick driveStick){
+	public static void liftFront(Joystick driveStick){
 		if (driveStick.getRawButton(7) == true){
 			frontExtend();
 		}else{
