@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+//import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,6 +25,9 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+
+  @SuppressWarnings("unused")
+  private Camera cam = new Camera("stream");
 
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opStick = new Joystick(1);
@@ -98,6 +102,10 @@ public class Robot extends TimedRobot {
     Elevator.elevEncoderTest(opStick);
     Elevator.elevBrake();
     Elevator.encoderTest();
+    Drivetrain.drive(driveStick.getY(), driveStick.getZ());
+    Pneumatics.toggleLift(driveStick);
+    //Pneumatics.liftFront(driveStick);
+    //Pneumatics.liftRear(driveStick);
   }
 
   /**
