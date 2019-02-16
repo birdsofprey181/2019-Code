@@ -9,6 +9,7 @@ public class Elevator {
 
     static Spark elevator = new Spark(2);
     static Encoder elevEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+    static Double wantedHeight = 0.0;
 
     public static void resetElevEncoder(){
         elevEncoder.reset();
@@ -52,6 +53,17 @@ public class Elevator {
         elevator.set(up);
         if(elevEncoder.getDistance() < 5.0 && elevEncoder.getDistance() > -5.0){
             resetElevEncoder();
+        }
+    }
+
+    public static void elevBrake() {
+        Double elevTolerance = 5.0; // tolerance + & -
+        Double upBound = wantedHeight + elevTolerance;
+        Double lowBound = wantedHeight - elevTolerance;
+        if (elevEncoder.getDistance() < lowBound) {
+            elevControl(2); // check polarity and values
+        } else if( elevEncoder.getDistance() > upBound) {
+            elevControl(-2);
         }
     }
 
