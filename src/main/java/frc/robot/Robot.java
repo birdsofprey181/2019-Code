@@ -98,6 +98,7 @@ public class Robot extends TimedRobot {
     Elevator.elevEncoderTest(opStick);
     Elevator.elevBrake();
     Elevator.encoderTest();
+    Intake.intakeDirection(opStick);
   }
 
   /**
