@@ -42,8 +42,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    //Pneumatics.frontActive = false;
-    //Pneumatics.rearActive = false;
+    Elevator.resetElevEncoder();
   }
 
   /**
@@ -103,7 +102,9 @@ public class Robot extends TimedRobot {
     //Pneumatics.liftRear(driveStick);
     Elevator.elevControl(opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
-    // Elevator.elevEncoderTest(opStick);
+    Elevator.elevEncoderTest(opStick);
+    Elevator.elevBrake();
+    Elevator.encoderTest();
   }
 
   /**
@@ -111,5 +112,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    //heck
   }
 }
