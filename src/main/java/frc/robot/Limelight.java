@@ -6,7 +6,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import java.lang.Number;
-import edu.wpi.first.wpilibj.DriverStation   
+import edu.wpi.first.wpilibj.DriverStation;   
 
 
 public class Limelight{
@@ -15,10 +15,39 @@ public class Limelight{
     public double XAxis;
     public double YAxis;
     public double Area;
-
+    boolean DriverStation;
+    boolean isEnabled;
+   
+  
     public Limelight (){
-        mylimeLightloop.start();
+        
+        Thread limeLightloop = new Thread(){
+            public void run(){
+                public Void while(DriverStation.isEnabled()){
+                    
+                    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+                    NetworkTableEntry targetFound = table.getEntry("targetFound");
+                    NetworkTableEntry XAxis = table.getEntry("XAxis");
+                    NetworkTableEntry YAxis = table.getEntry("YAxis");
+                    NetworkTableEntry Area = table.getEntry("Area");
+                        
+                    if (targetFound.getNumber(0).intValue() == 1){
+                        this.targetFound = true;
+                    }
+                    else if (targetFound.getNumber(0).intValue() == 0){
+                        this.targetFound = false;
+                    } 
+    
+                    this.XAxis = XAxis.getDouble(0.0);
+                    this.YAxis = YAxis.getDouble(0.0);
+                    this.Area = Area.getDouble(0.0);
+                    
+                }
+            }
+        };
+        limeLightloop.start();
     }
+  
 
     public boolean gettargetFound(){
         return this.targetFound;
@@ -34,29 +63,5 @@ public class Limelight{
         return this.Area;
     }
 
-    Thread limeLightloop = new Thread(){
-        public void run(){
-                while(driverstation.isenabled){
-                    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-                    NetworkTableEntry targetFound = table.getEntry("targetFound");
-                    NetworkTableEntry XAxis = table.getEntry("XAxis");
-                    NetworkTableEntry YAxis = table.getEntry("YAxis");
-                    NetworkTableEntry Area = table.getEntry("Area");
-                    
-                    if (targetFound.getNumber(0).intValue() == 1){
-                        this.targetFound = true;
-                    }
-                    else if (targetFound.getNumber(0).intValue() == 0){
-                        this.targetFound = false;
-                    } 
-
-                    this.XAxis = XAxis.getDouble(0.0);
-                    this.YAxis = YAxis.getDouble(0.0);
-                    this.Area = Area.getDouble(0.0);
-                    
-                }
-            }
-    }
-
+   
 }
-    
