@@ -95,6 +95,7 @@ public class Robot extends TimedRobot {
     Elevator.elevControl(opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
     Elevator.elevEncoderTest(opStick);
+    Elevator.encoderTest();
   }
 
   /**
@@ -102,7 +103,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    Elevator.encoderTest();
     //heck
   }
 }
