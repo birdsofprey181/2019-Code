@@ -1,5 +1,7 @@
 package frc.robot;
 
+// hatch solenoids by will
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import java.util.Timer;
@@ -14,6 +16,11 @@ public class Pneumatics {
 
 	static DoubleSolenoid frontSol = new DoubleSolenoid(2, 3);
 	static DoubleSolenoid rearSol = new DoubleSolenoid(4, 5);
+	static DoubleSolenoid hatchSol = new DoubleSolenoid(0, 1);
+	//static DoubleSolenoid testSol = new DoubleSolenoid(moduleNumber, forwardChannel, reverseChannel)
+	//static DoubleSolenoid testSol = new DoubleSolenoid(forwardChannel, reverseChannel)
+    //static Joystick driveStick = new Joystick(0);
+    //static Joystick opStick = new Joystick(1);
 
     public static void frontExtend() {
 		frontSol.set(DoubleSolenoid.Value.kForward);	//moves solenoid forward
@@ -26,6 +33,20 @@ public class Pneumatics {
 	}
 	public static void rearRetract() {
 		rearSol.set(DoubleSolenoid.Value.kReverse);
+	}
+	public static void pushHatch() {
+		hatchSol.set(DoubleSolenoid.Value.kForward);
+	}
+	public static void pullHatch() {
+		hatchSol.set(DoubleSolenoid.Value.kReverse);
+	}
+	public static void detatchHatch(Joystick driveStick) {
+		if(driveStick.getRawButton(1) == true){
+			pushHatch();
+		}
+		else{
+			pullHatch();
+		}
 	}
 	public static void liftFront(Joystick driveStick){
 		if (driveStick.getRawButton(7) == true){
