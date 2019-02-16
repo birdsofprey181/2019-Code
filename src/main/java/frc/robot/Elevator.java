@@ -9,7 +9,7 @@ public class Elevator {
 
     static Spark elevator = new Spark(2);
     static Encoder elevEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
-    Double elevTolerance = 5.0; // tolerance + & -
+    static Double elevTolerance = 5.0; // tolerance + & -
     static Double wantedHeight = 0.0;
 
     public static void resetElevEncoder(){
