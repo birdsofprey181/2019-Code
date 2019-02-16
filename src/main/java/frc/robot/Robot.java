@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,15 +25,20 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  public static Joystick driveStick = new Joystick(0);
+  public static Joystick opStick = new Joystick(1);
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
+    Elevator.resetElevEncoder();
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    Elevator.resetElevEncoder();
   }
 
   /**
@@ -87,6 +93,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    Elevator.elevControl(opStick.getY());
+    Drivetrain.drive(driveStick.getY(), driveStick.getZ());
+    Elevator.elevEncoderTest(opStick);
+    Elevator.elevBrake();
+    Elevator.encoderTest();
   }
 
   /**
@@ -94,7 +105,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    System.out.println("This is a test");
     //heck
   }
 }
