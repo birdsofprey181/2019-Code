@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class Intake {
 
-    static Spark intakeMotor = new Spark(12);
+    static Spark intakeMotor = new Spark(3);
 
     public static void intakeControl(double up) {
         intakeMotor.set(up);
