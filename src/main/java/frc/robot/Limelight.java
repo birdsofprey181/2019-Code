@@ -6,7 +6,8 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import java.lang.Number;
-import edu.wpi.first.wpilibj.DriverStation;   
+import edu.wpi.first.wpilibj.DriverStation; 
+  
 
 
 public class Limelight{
@@ -23,8 +24,8 @@ public class Limelight{
         
         Thread limeLightloop = new Thread(){
             public void run(){
-                public Void while(DriverStation.isEnabled()){
-                    
+             while(DriverStation.isEnabled()){
+
                     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
                     NetworkTableEntry targetFound = table.getEntry("targetFound");
                     NetworkTableEntry XAxis = table.getEntry("XAxis");
@@ -62,6 +63,4 @@ public class Limelight{
     public double getArea(){
         return this.Area;
     }
-
-   
 }
