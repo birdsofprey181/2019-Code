@@ -107,6 +107,8 @@ public class Robot extends TimedRobot {
     // Elevator.elevBrake();
     Elevator.encoderTest();
     Intake.intakeDirection(opStick);
+    VisionSystem.operateVisionTracking(driveStick);
+
   }
 
   /**
