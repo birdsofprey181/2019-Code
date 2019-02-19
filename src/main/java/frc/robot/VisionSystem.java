@@ -23,28 +23,28 @@ import edu.wpi.first.wpilibj.Joystick;
 import java.lang.Math; 
 
 public class VisionSystem {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("x");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
+    static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    static NetworkTableEntry tx = table.getEntry("x");
+    static NetworkTableEntry ty = table.getEntry("ty");
+    static NetworkTableEntry ta = table.getEntry("ta");
 
     //read values periodically
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
+    static double x = tx.getDouble(0.0);
+    static double y = ty.getDouble(0.0);
+    static double area = ta.getDouble(0.0);
 
     // measurements to find distance in inches and radians
-    double cameraHeight = 12; // CHANGE when limelight is mounted
-    double hatchHeight = 29; // rocket and cargo hatch heights
-    double rocketFaceHeight = 37; // front face of rocket
-    double cameraAngle = Math.PI * .25; // in radians, CHANGE when limelight is mounted
+    static double cameraHeight = 12; // CHANGE when limelight is mounted
+    static double hatchHeight = 29; // rocket and cargo hatch heights
+    static double rocketFaceHeight = 37; // front face of rocket
+    static double cameraAngle = Math.PI * .25; // in radians, CHANGE when limelight is mounted
 
     //post to smart dashboard periodically
     // SmartDashboard.putNumber("LimelightX", x);
     // SmartDashboard.putNumber("LimelightY", y);
     // SmartDashboard.putNumber("LimelightArea", area);
     
-    public void operateVisionTracking(Joystick driveStick) {
+    public static void operateVisionTracking(Joystick driveStick) {
         if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
             driveToHatchTarget(x, y, driveStick);
         }
@@ -53,7 +53,7 @@ public class VisionSystem {
         }
     }
 
-    public void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
+    public static void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
         while (!driveStick.getRawButton(4)) { // hit 4 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceHatch(y);
@@ -63,7 +63,7 @@ public class VisionSystem {
             }
         }  
     }
-    public void driveToRocketFaceTarget(double x, double y, Joystick driveStick) { // moves robot towards a rocket face target
+    public static void driveToRocketFaceTarget(double x, double y, Joystick driveStick) { // moves robot towards a rocket face target
         while (!driveStick.getRawButton(6)) { // hit 6 to stop the auto
             alignWithTarget(x);
             double distance = findDistanceRocketFace(y);
@@ -73,7 +73,7 @@ public class VisionSystem {
             }
         }
     }
-    public void alignWithTarget(double x) { // points robot at target, leaving a "degree of freedom" on both sides of center
+    public static void alignWithTarget(double x) { // points robot at target, leaving a "degree of freedom" on both sides of center
         //values of x range [-27,27]
         if (x < -1) { // target is to the left
             while(x < -1) {
@@ -85,7 +85,7 @@ public class VisionSystem {
             }
         }
     }
-    public double findDistanceHatch(double y) { // INCHES, for cargo ship and rocket hatches
+    public static double findDistanceHatch(double y) { // INCHES, for cargo ship and rocket hatches
         double distance = 0;
         double a2 = Math.toRadians(y);
         double heightDifference = hatchHeight - cameraHeight;
@@ -96,7 +96,7 @@ public class VisionSystem {
         }
         return distance;
     }
-    public double findDistanceRocketFace(double y) { // INCHES, for rocket face
+    public static double findDistanceRocketFace(double y) { // INCHES, for rocket face
         double distance = 0;
         double a2 = Math.toRadians(y);
         double heightDifference = rocketFaceHeight - cameraHeight;
