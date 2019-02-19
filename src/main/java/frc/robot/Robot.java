@@ -31,6 +31,8 @@ public class Robot extends TimedRobot {
 
   @SuppressWarnings("unused")
   private Camera cam = new Camera("stream");
+  @SuppressWarnings("unused")
+  private Camera pneuCam = new Camera("pneumatics");
 
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opStick = new Joystick(1);
