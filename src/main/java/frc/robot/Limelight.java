@@ -19,48 +19,39 @@ public class Limelight{
     boolean DriverStation;
     boolean isEnabled;
    
-  
-    public Limelight (){
+    public void update(){
         
-        Thread limeLightloop = new Thread(){
-            public void run(){
-             while(DriverStation.isEnabled()){
 
-                    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-                    NetworkTableEntry targetFound = table.getEntry("targetFound");
-                    NetworkTableEntry XAxis = table.getEntry("XAxis");
-                    NetworkTableEntry YAxis = table.getEntry("YAxis");
-                    NetworkTableEntry Area = table.getEntry("Area");
-                        
-                    if (targetFound.getNumber(0).intValue() == 1){
-                        this.targetFound = true;
-                    }
-                    else if (targetFound.getNumber(0).intValue() == 0){
-                        this.targetFound = false;
-                    } 
-    
-                    this.XAxis = XAxis.getDouble(0.0);
-                    this.YAxis = YAxis.getDouble(0.0);
-                    this.Area = Area.getDouble(0.0);
-                    
-                }
+            NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+            NetworkTableEntry targetFound = table.getEntry("targetFound");
+            NetworkTableEntry XAxis = table.getEntry("XAxis");
+            NetworkTableEntry YAxis = table.getEntry("YAxis");
+            NetworkTableEntry Area = table.getEntry("Area");
+                
+            if (targetFound.getNumber(0).intValue() == 1){
+                this.targetFound = true;
             }
-        };
-        limeLightloop.start();
-    }
-  
+            else if (targetFound.getNumber(0).intValue() == 0){
+                this.targetFound = false;
+            } 
 
-    public boolean gettargetFound(){
-        return this.targetFound;
-    }
+            this.XAxis = XAxis.getDouble(0.0);
+            this.YAxis = YAxis.getDouble(0.0);
+            this.Area = Area.getDouble(0.0);
+        }
 
-    public double getXAxis(){
-        return this.XAxis;
-    }
-    public double getYAxis(){
-        return this.YAxis;
-    }
-    public double getArea(){
-        return this.Area;
+
+public boolean gettargetFound(){
+return this.targetFound;
+}
+
+public double getXAxis(){
+return this.XAxis;
+}
+public double getYAxis(){
+return this.YAxis;
+}
+public double getArea(){
+return this.Area;
     }
 }

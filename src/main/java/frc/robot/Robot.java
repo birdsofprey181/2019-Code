@@ -23,10 +23,13 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
+  public static Limelight limelight = new Limelight();
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   /**
@@ -93,6 +96,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    limelight.update();
   }
 
   /**
