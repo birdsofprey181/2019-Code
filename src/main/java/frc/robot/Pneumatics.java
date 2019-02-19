@@ -5,12 +5,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import java.util.Timer;
-<<<<<<< HEAD
-// import java.util.concurrent.TimeUnit;
-=======
 import edu.wpi.first.wpilibj.smartdashboard.*;
 //import java.util.concurrent.TimeUnit;
->>>>>>> 4d75cf57bbd7e2f9d2be1b48d4b9dd1d3a80ff72
 
 public class Pneumatics {
 
