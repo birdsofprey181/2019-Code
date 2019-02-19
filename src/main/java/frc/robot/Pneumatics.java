@@ -5,7 +5,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import java.util.Timer;
+<<<<<<< HEAD
 // import java.util.concurrent.TimeUnit;
+=======
+import edu.wpi.first.wpilibj.smartdashboard.*;
+//import java.util.concurrent.TimeUnit;
+>>>>>>> 4d75cf57bbd7e2f9d2be1b48d4b9dd1d3a80ff72
 
 public class Pneumatics {
 
@@ -78,13 +83,18 @@ public class Pneumatics {
 		} 
 		if (rearActive == true){
 			rearExtend();
+			SmartDashboard.putString("frontPneumatics", "Front Extended");
 		} else if (rearActive == false){
 			rearRetract();
+			SmartDashboard.putString("frontPneumatics", "Front Retracted");
 		}
 		if (frontActive == true){
 			frontExtend();
+			SmartDashboard.putString("rearPneumatics", "Rear Active");
 		} else if (frontActive == false){
 			frontRetract();
+			SmartDashboard.putString("rearPneumatics", "Rear Retracted");
 		}
+
 	}
 }
