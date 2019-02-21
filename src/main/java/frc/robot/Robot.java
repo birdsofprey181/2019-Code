@@ -7,9 +7,11 @@
 
 package frc.robot;
 
+//import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import org.usfirst.frc.team181.robot.subsystems;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
@@ -22,8 +24,15 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
+  //modifided code of barlowrobotics-2018-code
+  // public static final LimeVisionSubsystem limeVisionSubsystem = new LimeVisionSubsystem();
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+
+  @SuppressWarnings("unused")
+  private Camera cam = new Camera("stream");
+  @SuppressWarnings("unused")
+  private Camera pneuCam = new Camera("pneumatics");
 
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opStick = new Joystick(1);
@@ -93,14 +102,24 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    Pneumatics.toggleLift(driveStick);
+    Pneumatics.detatchHatch(opStick);
+    //Pneumatics.liftFront(driveStick);
+    //Pneumatics.liftRear(driveStick);
     Elevator.elevControl(opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
     Elevator.elevEncoderTest(opStick);
     Elevator.elevBrake();
     //Elevator.encoderTest();
     Intake.joystickTest(opStick);
+    // Elevator.elevBrake();
+    Elevator.encoderTest();
     Intake.intakeDirection(opStick);
+    VisionSystem.operateVisionTracking(driveStick);
+
   }
+
+  //hello world
 
   /**
    * This function is called periodically during test mode.
