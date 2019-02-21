@@ -97,7 +97,8 @@ public class Robot extends TimedRobot {
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
     Elevator.elevEncoderTest(opStick);
     Elevator.elevBrake();
-    Elevator.encoderTest();
+    //Elevator.encoderTest();
+    Intake.joystickTest(opStick);
     Intake.intakeDirection(opStick);
   }
 
