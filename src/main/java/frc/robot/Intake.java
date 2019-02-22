@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Intake {
 
     static Spark intakeMotor = new Spark(3);
+    // input pivot motor
+    // input motor to return to fram perimeter
 
     public static void intakeControl(double up) {
         intakeMotor.set(up);
@@ -19,5 +21,13 @@ public class Intake {
         } else if (opStick.getRawButton(5)) { // outtake
             intakeControl(-1);
         }
+    }
+
+    public static void pivotIntake(Joystick opsStick) {
+
+    }
+
+    public static void toggleStartingConfig(Joystick opStick) {
+        
     }
 }
