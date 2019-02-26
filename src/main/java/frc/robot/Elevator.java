@@ -11,6 +11,13 @@ public class Elevator {
     static Encoder elevEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
     static Double elevTolerance = 5.0; // tolerance + & -
     static Double wantedHeight = 0.0;
+    
+    static Spark wrist = new Spark(3);
+    static Encoder wristEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+
+    public static void wristMove(double up){
+        wrist.set(up);
+    }
 
     public static void resetElevEncoder(){
         elevEncoder.reset();
