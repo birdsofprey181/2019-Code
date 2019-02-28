@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class Intake {
 
-    static Spark intakeMotor = new Spark(3);
+    static Spark intakeMotor = new Spark(4);
     // input pivot motor
     // input motor to return to fram perimeter
 
