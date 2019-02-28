@@ -19,6 +19,15 @@ public class Elevator {
         wrist.set(up);
     }
 
+    public static void controlWrist(Joystick opStick) {
+        int povValue = opStick.getPOV(0);
+        if (povValue == 0) { // pov stick is up
+            wristMove(.5); // hopefully polarities are right
+        } else if (povValue == 180) { // pov stick is down
+            wristMove(-.5);
+        }
+    }
+
     public static void resetElevEncoder(){
         elevEncoder.reset();
     }
