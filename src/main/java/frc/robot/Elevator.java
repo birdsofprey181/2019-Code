@@ -24,7 +24,9 @@ public class Elevator {
         if (povValue == 0) { // pov stick is up
             wristMove(.5); // hopefully polarities are right
         } else if (povValue == 180) { // pov stick is down
-            wristMove(-.5);
+            wristMove(-.5); 
+        } else if (povValue == -1) { // pov stick is neutral (stoppping the wrist)
+            wristMove(0.0);
         }
     }
 
