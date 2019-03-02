@@ -19,10 +19,9 @@ public class Limelight{
     boolean DriverStation;
     boolean isEnabled;
    
-    public void update(){
-        
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
-            NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    public void update(){
             NetworkTableEntry targetFound = table.getEntry("targetFound");
             NetworkTableEntry XAxis = table.getEntry("XAxis");
             NetworkTableEntry YAxis = table.getEntry("YAxis");
@@ -41,17 +40,25 @@ public class Limelight{
         }
 
 
-public boolean gettargetFound(){
-return this.targetFound;
-}
+    public boolean gettargetFound(){
+        return this.targetFound;
+    }
 
-public double getXAxis(){
-return this.XAxis;
-}
-public double getYAxis(){
-return this.YAxis;
-}
-public double getArea(){
-return this.Area;
+    public double getXAxis(){
+        return this.XAxis;
+    }
+    public double getYAxis(){
+        return this.YAxis;
+    }
+    public double getArea(){
+        return this.Area;
+    }
+//turns on camera so drivers can see
+    public void driverMode(){
+        table.getEntry("camMode").setNumber(1);
+    }
+    //turns off the camera and starts vision processing 
+    public void processingMode(){
+        table.getEntry("camMode").setNumber(0);
     }
 }
