@@ -7,12 +7,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Compressor;
+// import org.usfirst.frc.team181.robot.subsystems;
+import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import org.usfirst.frc.team181.robot.subsystems;
-import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,6 +39,9 @@ public class Robot extends TimedRobot {
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opStick = new Joystick(1);
 
+  private Compressor MainCompressor = new Compressor(0);
+  private AnalogInput PressureSensor = new AnalogInput(0);
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -60,6 +65,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+    double Pressure = PressureSensor.getVoltage();
+
+    SmartDashboard.putBoolean("CompressorOn", MainCompressor.getClosedLoopControl());
+    SmartDashboard.putNumber("Pressure", Pressure);
   }
 
   /**
