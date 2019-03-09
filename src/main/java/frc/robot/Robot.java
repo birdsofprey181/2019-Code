@@ -96,15 +96,18 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    Pneumatics.toggleLift(driveStick);
+    Pneumatics.detatchHatch(opStick);
+    //Pneumatics.liftFront(driveStick);
+    //Pneumatics.liftRear(driveStick);
+    Elevator.elevControl(opStick.getY());
+    Drivetrain.drive(driveStick.getY(), driveStick.getZ());
+    Elevator.elevEncoderTest(opStick);
+    // Elevator.elevBrake();
+    Elevator.encoderTest();
+    Intake.intakeDirection(opStick);
+    VisionSystem.operateVisionTracking(driveStick);
+    Elevator.controlWrist(opStick);
   }
 
   /**
