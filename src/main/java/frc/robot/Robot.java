@@ -123,7 +123,7 @@ public class Robot extends TimedRobot {
     Elevator.encoderTest();
     Intake.intakeDirection(opStick);
     VisionSystem.operateVisionTracking(driveStick);
-    Elevator.wristMove(opStick.getX());
+    Elevator.controlWrist(opStick);
 
   }
 
