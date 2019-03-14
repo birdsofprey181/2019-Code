@@ -64,19 +64,25 @@ public class Pneumatics {
 		}
 	}
 	public static void toggleLift(Joystick driveStick){
-		if(driveStick.getRawButtonPressed(7) == true){
+		if(driveStick.getRawButtonPressed(7) == true){ // drops both
 			frontActive = true;
 			// try{
 				// TimeUnit.SECONDS.sleep(3);
 			// }catch(InterruptedException wack){}
 			rearActive = true;
 		}
-		if(driveStick.getRawButtonPressed(9) == true){
+		if(driveStick.getRawButtonPressed(9) == true){ // retracts front
 			frontActive = false;
 		}
-		if(driveStick.getRawButtonPressed(11) == true){
+		if(driveStick.getRawButtonPressed(11) == true){ // retract rear
 			rearActive = false;
 		} 
+		if(driveStick.getRawButtonPressed(10)) { // drop front
+			frontActive = true;
+		}
+		if(driveStick.getRawButtonPressed(12)) { // drop rear
+			rearActive = true;
+		}
 		if (rearActive == true){
 			rearExtend();
 			SmartDashboard.putString("frontPneumatics", "Front Extended");
