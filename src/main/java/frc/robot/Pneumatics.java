@@ -93,4 +93,19 @@ public class Pneumatics {
 		}
 
 	}
+	public static void dropRear(Joystick driveStick){
+		if (driveStick.getRawButton(12) == true){
+			rearExtend();
+		}else{
+			rearRetract();
+		}
+	}
+	public static void dropFront(Joystick driveStick){
+		if (driveStick.getRawButton(10) == true){
+			frontExtend();
+		}
+		else{
+			rearRetract();
+		}
+	}
 }
