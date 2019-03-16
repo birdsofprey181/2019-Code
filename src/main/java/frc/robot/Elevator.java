@@ -9,7 +9,26 @@ public class Elevator {
 
     static Spark elevator = new Spark(2);
     static Encoder elevEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+    static Double elevTolerance = 5.0; // tolerance + & -
     static Double wantedHeight = 0.0;
+    
+    static Spark wrist = new Spark(3);
+    static Encoder wristEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+
+    public static void wristMove(double up){
+        wrist.set(up);
+    }
+
+    public static void controlWrist(Joystick opStick) {
+        int povValue = opStick.getPOV(0);
+        if (povValue == 0) { // pov stick is up
+            wristMove(1.0); // hopefully polarities are right
+        } else if (povValue == 180) { // pov stick is down
+            wristMove(-1.0); 
+        } else if (povValue == -1) { // pov stick is neutral (stoppping the wrist)
+            wristMove(0.0);
+        }
+    }
 
     public static void resetElevEncoder(){
         elevEncoder.reset();
@@ -57,7 +76,6 @@ public class Elevator {
     }
 
     public static void elevBrake() {
-        Double elevTolerance = 5.0; // tolerance + & -
         Double upBound = wantedHeight + elevTolerance;
         Double lowBound = wantedHeight - elevTolerance;
         if (elevEncoder.getDistance() < lowBound) {

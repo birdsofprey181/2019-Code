@@ -5,7 +5,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import java.util.Timer;
-// import java.util.concurrent.TimeUnit;
+import edu.wpi.first.wpilibj.smartdashboard.*;
+//import java.util.concurrent.TimeUnit;
 
 public class Pneumatics {
 
@@ -63,28 +64,54 @@ public class Pneumatics {
 		}
 	}
 	public static void toggleLift(Joystick driveStick){
-		if(driveStick.getRawButtonPressed(7) == true){
+		if(driveStick.getRawButtonPressed(7) == true){ // drops both
 			frontActive = true;
 			// try{
 				// TimeUnit.SECONDS.sleep(3);
 			// }catch(InterruptedException wack){}
 			rearActive = true;
 		}
-		if(driveStick.getRawButtonPressed(9) == true){
+		if(driveStick.getRawButtonPressed(9) == true){ // retracts front
 			frontActive = false;
 		}
-		if(driveStick.getRawButtonPressed(11) == true){
+		if(driveStick.getRawButtonPressed(11) == true){ // retract rear
 			rearActive = false;
 		} 
+		if(driveStick.getRawButtonPressed(10)) { // drop front
+			frontActive = true;
+		}
+		if(driveStick.getRawButtonPressed(12)) { // drop rear
+			rearActive = true;
+		}
 		if (rearActive == true){
 			rearExtend();
+			SmartDashboard.putString("frontPneumatics", "Front Extended");
 		} else if (rearActive == false){
 			rearRetract();
+			SmartDashboard.putString("frontPneumatics", "Front Retracted");
 		}
 		if (frontActive == true){
 			frontExtend();
+			SmartDashboard.putString("rearPneumatics", "Rear Active");
 		} else if (frontActive == false){
 			frontRetract();
+			SmartDashboard.putString("rearPneumatics", "Rear Retracted");
+		}
+
+	}
+	public static void dropRear(Joystick driveStick){
+		if (driveStick.getRawButton(12) == true){
+			rearExtend();
+		}else{
+			rearRetract();
+		}
+	}
+	public static void dropFront(Joystick driveStick){
+		if (driveStick.getRawButton(10) == true){
+			frontExtend();
+		}
+		else{
+			rearRetract();
 		}
 	}
 }
