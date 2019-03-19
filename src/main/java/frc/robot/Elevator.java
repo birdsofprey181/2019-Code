@@ -69,7 +69,7 @@ public class Elevator {
     }
 
     public static void elevControl(double up) {
-        elevator.set(up*up);
+        elevator.set(up);
         if(elevEncoder.getDistance() < 5.0 && elevEncoder.getDistance() > -5.0){
             resetElevEncoder();
         }
