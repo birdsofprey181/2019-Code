@@ -18,12 +18,17 @@ public class Drivetrain {
 
     static DifferentialDrive driveTrain = new DifferentialDrive(leftMotor, rightMotor);
 
+    public static double valSqu(double num){
+        num = (num/Math.abs(num))*(num*num);
+        return num;
+    }
+
     public static void stop() {
         driveTrain.stopMotor();
     }
 
     public static void drive(double forward, double turn) {
-        driveTrain.arcadeDrive(-forward, turn);
+        driveTrain.arcadeDrive(valSqu(-forward), turn);
     }
 
 }
