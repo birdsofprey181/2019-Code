@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
     Pneumatics.detatchHatch(opStick);
     //Pneumatics.liftFront(driveStick);
     //Pneumatics.liftRear(driveStick);
-    Elevator.elevControl(-opStick.getY());
+    Elevator.elevControl(opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
     Elevator.elevEncoderTest(opStick);
     // Elevator.elevBrake();
