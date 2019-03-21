@@ -1,4 +1,14 @@
 //Done by Evan Belcourt in 2019 on march 19th
 package frc.robot;
-Joystick Drivestick = new Joystick stick(0);
+import edu.wpi.first.wpilibj.Joystick;
+
+public class changelimelightvalue{
+    public static Joystick driveStick = new Joystick(0);{
+//creates trigger button for driverstick
+   if (driveStick.getRawButton(1) == true){
+
+        } 
+    }
+}
+
 
