@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,6 +15,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 //....import sun.tools.jconsole.ProxyClient.Snapshot;
+
 
 
 /**
@@ -26,11 +28,14 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 
 public class Robot extends TimedRobot {
+  public static Joystick driveStick = new Joystick(0);
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   public static Limelight limelight = new Limelight();
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  private boolean lightToggle = false;
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -41,6 +46,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    limelight.offLight();
   }
 
   /**
@@ -53,7 +59,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    
+    //creates trigger button for driverstick
+    if (driveStick.getRawButtonPressed(1) == true && lightToggle == false){
+      limelight.onLight();
+      lightToggle = true;
+    }
+    if (driveStick.getRawButtonPressed(1) == true && lightToggle == true){
+      limelight.offLight();
+      lightToggle = false;
+    }
   }
 
   /**

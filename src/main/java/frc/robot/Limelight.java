@@ -61,4 +61,12 @@ public class Limelight{
     public void processingMode(){
         table.getEntry("camMode").setNumber(0);
     }
+    public void offLight(){
+        table.getEntry("ledMode").setNumber(1);
+    }
+    public void onLight(){
+        table.getEntry("ledMode").setNumber(3);
+    }
 }
+
+    
