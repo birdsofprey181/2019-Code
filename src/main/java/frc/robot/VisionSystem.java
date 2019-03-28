@@ -46,13 +46,23 @@ public class VisionSystem {
     
     public static void operateVisionTracking(Joystick driveStick) {
         if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
+            visionOn();
             driveToHatchTarget(x, y, driveStick);
+            visionOff();
         }
         if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
+            visionOn();
             driveToRocketFaceTarget(x, y, driveStick);
+            visionOff();
         }
     }
 
+    public static void visionOn() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
+    }
+    public static void visionOff() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
+    }
     public static void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
         while (!driveStick.getRawButton(4)) { // hit 4 to stop the auto
             alignWithTarget(x);
