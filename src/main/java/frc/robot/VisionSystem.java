@@ -107,4 +107,8 @@ public class VisionSystem {
         }
         return distance;
     }
+
+    public static void PostToDashboard() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    }
 }
