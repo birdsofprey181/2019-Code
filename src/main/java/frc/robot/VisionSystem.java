@@ -1,26 +1,9 @@
 package frc.robot;
 
-/*
-Vision tracking and alignment system - will
-
-READ BEFORE RUNNING
-
-as of 2-7-19, the limelight is not mounted, and some distances are dependent on measurements
-that need to be taken once the limelight is finally secured and connected to the robot.
-Anything that says "CHANGE when limelight is mounted" should be updated once the limelight is mounted along
-with any speeds. As I am writing this code I am just speculating how fast we want the robot to go
-
-because there are 2 different hieghts of vision targets, there are 2 methods; one for the cargo hold and
-rocket hatch height (both under names related to "Hatch") and another for the front rocket face (under names
-relating to "RocketFace"). If a method does not clarify, it is ambidextrous
-*/
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Joystick;
-import java.lang.Math; 
+import edu.wpi.first.wpilibj.Joystick; 
 
 public class VisionSystem {
     static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -110,5 +93,15 @@ public class VisionSystem {
 
     public static void PostToDashboard() {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    }
+
+    public static void changeLEDStatus(Joystick driveStick){
+        if (driveStick.getRawButton(0)){
+            NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+        }
+
+        else {
+            NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+        }
     }
 }

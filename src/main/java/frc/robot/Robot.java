@@ -108,6 +108,7 @@ public class Robot extends TimedRobot {
     Intake.intakeDirection(opStick);
     VisionSystem.operateVisionTracking(driveStick);
     Elevator.controlWrist(opStick);
+    VisionSystem.changeLEDStatus(driveStick);
   }
 
   /**
@@ -127,11 +128,12 @@ public class Robot extends TimedRobot {
     Intake.intakeDirection(opStick);
     VisionSystem.operateVisionTracking(driveStick);
     Elevator.controlWrist(opStick);
-
+    VisionSystem.changeLEDStatus(driveStick);
   }
 
-  //hello world
-
+  // hello world
+  // will is the gitmaster
+  
   /**
    * This function is called periodically during test mode.
    */
