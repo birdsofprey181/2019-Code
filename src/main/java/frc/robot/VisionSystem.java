@@ -96,12 +96,17 @@ public class VisionSystem {
     }
 
     public static void changeLEDStatus(Joystick driveStick){
-        if (driveStick.getRawButton(0)){
+        if (driveStick.getRawButton(1)){
             NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
         }
 
-        else {
+        else if (driveStick.getRawButton(2)){
             NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
         }
+
+        else {
+            NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(2); 
+        }
+
     }
 }
