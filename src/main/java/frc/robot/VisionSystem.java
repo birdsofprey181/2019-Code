@@ -5,7 +5,7 @@ Vision tracking and alignment system - will
 
 READ BEFORE RUNNING
 
-as of 2-7-19, the limelight is not mounted, and some distances are dependent on measurements
+as of 4-4-19, the limelight is not mounted, and some distances are dependent on measurements
 that need to be taken once the limelight is finally secured and connected to the robot.
 Anything that says "CHANGE when limelight is mounted" should be updated once the limelight is mounted along
 with any speeds. As I am writing this code I am just speculating how fast we want the robot to go
