@@ -17,54 +17,62 @@ public class VisionSystem {
     static double area = ta.getDouble(0.0);
 
     // measurements to find distance in inches and radians
-    static double cameraHeight = 12; // CHANGE when limelight is mounted
+    static double cameraHeight = 27; // CHANGE when limelight is mounted
     static double hatchHeight = 29; // rocket and cargo hatch heights
     static double rocketFaceHeight = 37; // front face of rocket
-    static double cameraAngle = Math.PI * .25; // in radians, CHANGE when limelight is mounted
+    static double cameraAngle = Math.PI * (1/18); // in radians, CHANGE when limelight is mounted
 
     //post to smart dashboard periodically
     // SmartDashboard.putNumber("LimelightX", x);
     // SmartDashboard.putNumber("LimelightY", y);
     // SmartDashboard.putNumber("LimelightArea", area);
     
+    public static void pictureInPicture (){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(1);
+    }
+
     public static void operateVisionTracking(Joystick driveStick) {
         if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
+            ledOn();
             driveToHatchTarget(x, y, driveStick);
-        }
-        if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
+            ledOff();
+        } else if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
+            ledOn();
             driveToRocketFaceTarget(x, y, driveStick);
+            ledOff();
         }
+
     }
 
     public static void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
-        while (!driveStick.getRawButton(4)) { // hit 4 to stop the auto
+        while (!driveStick.getRawButton(2)) {
             alignWithTarget(x);
             double distance = findDistanceHatch(y);
-            double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
-            while(distance > stopAtDistance) {
-                Drivetrain.drive(.5, 0);
-            }
-        }  
+            double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
+            // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
+            //     Drivetrain.drive(.25, 0);
+            // } 
+        } 
     }
     public static void driveToRocketFaceTarget(double x, double y, Joystick driveStick) { // moves robot towards a rocket face target
-        while (!driveStick.getRawButton(6)) { // hit 6 to stop the auto
+        while (!driveStick.getRawButton(2)) {
             alignWithTarget(x);
             double distance = findDistanceRocketFace(y);
-            double stopAtDistance = 12; //inches that limelight is from target, CHANGE when limelight is mounted
-            while(distance > stopAtDistance) {
-                Drivetrain.drive(.5, 0);
-            }
+            double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
+            // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
+            //     Drivetrain.drive(.25, 0);
+            // }
         }
     }
     public static void alignWithTarget(double x) { // points robot at target, leaving a "degree of freedom" on both sides of center
         //values of x range [-27,27]
         if (x < -1) { // target is to the left
             while(x < -1) {
-                Drivetrain.drive(0, .25); // turn right until aligned
+                Drivetrain.drive(.25, .25); // turn right until aligned
             }
         } else if (x > 1) { // target to the right
             while(x > 1) {
-                Drivetrain.drive(0, -.25); // turn left until aligned
+                Drivetrain.drive(.25, -.25); // turn left until aligned
             }
         }
     }
@@ -97,16 +105,18 @@ public class VisionSystem {
 
     public static void changeLEDStatus(Joystick driveStick){
         if (driveStick.getRawButton(1)){
-            NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+            ledOn();
+        } else {
+            ledOff();
         }
 
-        else if (driveStick.getRawButton(2)){
-            NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
-        }
-
-        else {
-            NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(2); 
-        }
-
+    }
+    public static void ledOn() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
+    }
+    public static void ledOff() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
     }
 }
