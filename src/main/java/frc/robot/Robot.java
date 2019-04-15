@@ -102,9 +102,9 @@ public class Robot extends TimedRobot {
     //Pneumatics.liftRear(driveStick);
     Elevator.elevControl(-opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
-    Elevator.elevEncoderTest(opStick);
+    // Elevator.elevEncoderTest(opStick);
     // Elevator.elevBrake();
-    Elevator.encoderTest();
+    Elevator.wristRead(opStick);
     Intake.intakeDirection(opStick);
     VisionSystem.operateVisionTracking(driveStick);
     Elevator.controlWrist(opStick);
@@ -122,9 +122,9 @@ public class Robot extends TimedRobot {
     //Pneumatics.liftRear(driveStick);
     Elevator.elevControl(-opStick.getY());
     Drivetrain.drive(driveStick.getY(), driveStick.getZ());
-    Elevator.elevEncoderTest(opStick);
+    // Elevator.elevEncoderTest(opStick);
     // Elevator.elevBrake();
-    Elevator.encoderTest();
+    Elevator.wristRead(opStick);
     Intake.intakeDirection(opStick);
     VisionSystem.operateVisionTracking(driveStick);
     Elevator.controlWrist(opStick);

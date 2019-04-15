@@ -4,16 +4,33 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Elevator {
 
     static Spark elevator = new Spark(2);
     static Encoder elevEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+    static Counter wristCounter = new Counter(new DigitalInput(2));
     static Double elevTolerance = 5.0; // tolerance + & -
     static Double wantedHeight = 0.0;
+    private static int position = 0;
     
     static Spark wrist = new Spark(3);
-    static Encoder wristEncoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+
+    public static void wristRead(Joystick opStick){
+        int povValue = opStick.getPOV(0);
+        if(povValue == 0){
+            position += wristCounter.get();
+        } else {
+            position -= wristCounter.get();
+        }
+        System.out.println(position);
+        wristCounter.reset();
+    }
+    public static void wristReset(){
+        wristCounter.reset();
+    }
 
     public static void wristMove(double up){
         wrist.set(up);
@@ -32,10 +49,6 @@ public class Elevator {
 
     public static void resetElevEncoder(){
         elevEncoder.reset();
-    }
-
-    public static void encoderTest(){
-        System.out.println(elevEncoder.getDistance());
     }
 
     public static void elevEncoderRaise(double elevDistance, double setDistance){
