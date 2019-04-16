@@ -18,6 +18,8 @@ public class Elevator {
     
     static Spark wrist = new Spark(3);
 
+    //turns the mechanism counter into an encoder-ish
+    //update as of DCMP: values slowly start to decrease, without any pattern
     public static void wristRead(Joystick opStick){
         int povValue = opStick.getPOV(0);
         if(povValue == 0){
@@ -28,14 +30,18 @@ public class Elevator {
         System.out.println(position);
         wristCounter.reset();
     }
+
+    //resets counter
     public static void wristReset(){
         wristCounter.reset();
     }
 
+    //returns the meaning of life
     public static void wristMove(double up){
         wrist.set(up);
     }
 
+    //translates pov into mechanism movements
     public static void controlWrist(Joystick opStick) {
         int povValue = opStick.getPOV(0);
         if (povValue == 0) { // pov stick is up
@@ -47,10 +53,13 @@ public class Elevator {
         }
     }
 
+    //do i really need to write comments for these methods?
     public static void resetElevEncoder(){
         elevEncoder.reset();
     }
 
+    //a method to automove the elevator to a set distance
+    //dont use this, it'll break the robot
     public static void elevEncoderRaise(double elevDistance, double setDistance){
         if(elevDistance < setDistance) {
             elevEncoder.setReverseDirection(false);
@@ -66,6 +75,7 @@ public class Elevator {
             }
         }
     }
+    //utilizes the elevEncoderRaise method to take the current elevator position and move it to the preset distance
     //example code, not used in the final code
     public static void elevEncoderTest(Joystick opStick){
         double elevDistance = elevEncoder.getDistance();
@@ -80,7 +90,7 @@ public class Elevator {
             elevEncoderRaise(elevDistance, botDist);
         }
     }
-
+    
     public static void elevControl(double up) {
         elevator.set(up);
         if(elevEncoder.getDistance() < 5.0 && elevEncoder.getDistance() > -5.0){
