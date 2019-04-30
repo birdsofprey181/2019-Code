@@ -11,11 +11,14 @@ public class VisionSystem {
     static double y = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0);
     static double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
 
+    static double testx = 10;
+    static double testDistance = 24;
+
     // measurements to find distance in inches and radians
     static double cameraHeight = 14; // CHANGE when limelight is mounted
     static double hatchHeight = 29; // rocket and cargo hatch heights
     static double rocketFaceHeight = 37; // front face of rocket
-    static double cameraAngle = Math.PI * (5/180); // in radians, CHANGE when limelight is mounted
+    static double cameraAngle = Math.PI * (10/180); // in radians, CHANGE when limelight is mounted
 
     //post to smart dashboard periodically
     // SmartDashboard.putNumber("LimelightX", x);
