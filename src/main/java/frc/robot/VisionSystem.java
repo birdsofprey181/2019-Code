@@ -6,21 +6,16 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick; 
 
 public class VisionSystem {
-    static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    static NetworkTableEntry tx = table.getEntry("x");
-    static NetworkTableEntry ty = table.getEntry("ty");
-    static NetworkTableEntry ta = table.getEntry("ta");
-
-    //read values periodically
-    static double x = tx.getDouble(0.0);
-    static double y = ty.getDouble(0.0);
-    static double area = ta.getDouble(0.0);
+    static double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);
+    static double x = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
+    static double y = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0);
+    static double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
 
     // measurements to find distance in inches and radians
-    static double cameraHeight = 27; // CHANGE when limelight is mounted
+    static double cameraHeight = 14; // CHANGE when limelight is mounted
     static double hatchHeight = 29; // rocket and cargo hatch heights
     static double rocketFaceHeight = 37; // front face of rocket
-    static double cameraAngle = Math.PI * (1/18); // in radians, CHANGE when limelight is mounted
+    static double cameraAngle = Math.PI * (5/180); // in radians, CHANGE when limelight is mounted
 
     //post to smart dashboard periodically
     // SmartDashboard.putNumber("LimelightX", x);
@@ -32,8 +27,10 @@ public class VisionSystem {
     }
 
     public static void operateVisionTracking(Joystick driveStick) {
+        printX();
         if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
             ledOn();
+            //test(driveStick);
             driveToHatchTarget(x, y, driveStick);
             ledOff();
         } else if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
@@ -43,9 +40,16 @@ public class VisionSystem {
         }
 
     }
+    public static void test(Joystick driveStick){
+        while (!driveStick.getRawButtonPressed(2)) {
+            Drivetrain.drive(0.0, .5);
+        }
+        
+    }
 
     public static void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
         while (!driveStick.getRawButton(2)) {
+            //Drivetrain.drive(0.0, .25);
             alignWithTarget(x);
             double distance = findDistanceHatch(y);
             double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
@@ -62,18 +66,18 @@ public class VisionSystem {
             // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
             //     Drivetrain.drive(.25, 0);
             // }
-        }
+        } // nice
     }
     public static void alignWithTarget(double x) { // points robot at target, leaving a "degree of freedom" on both sides of center
         //values of x range [-27,27]
-        if (x < -1) { // target is to the left
-            while(x < -1) {
-                Drivetrain.drive(.25, .25); // turn right until aligned
-            }
-        } else if (x > 1) { // target to the right
-            while(x > 1) {
-                Drivetrain.drive(.25, -.25); // turn left until aligned
-            }
+        while(x < -1) { // target is to the left
+            Drivetrain.drive(.25, .25); // turn right until aligned
+        }
+        while(x > 1) { // target to the right
+            Drivetrain.drive(.25, -.25); // turn left until aligned
+        }
+        if (x > -1 && x < 1) {
+            System.out.println("Robot alligned");
         }
     }
     public static double findDistanceHatch(double y) { // INCHES, for cargo ship and rocket hatches
@@ -120,5 +124,8 @@ public class VisionSystem {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
     }
     // hi fellow programmers. yall ugly
-    // excuse me sir that is very offensive to us programmers :( 
+    // excuse me ma'am that is very offensive to us programmers :( 
+    public static void printX() {
+        System.out.println("x offset - " + x);
+    }
 }
