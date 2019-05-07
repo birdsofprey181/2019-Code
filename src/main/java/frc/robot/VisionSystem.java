@@ -51,57 +51,58 @@ public class VisionSystem {
         printX();
         if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
             ledOn();
-            test(driveStick);
-            //driveToHatchTarget(getX(), getY(), driveStick);
+            //test(driveStick);
+            driveToHatchTarget(driveStick);
             ledOff();
         } else if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
             ledOn();
-            driveToRocketFaceTarget(getX(), getY(), driveStick);
+            driveToRocketFaceTarget(driveStick);
             ledOff();
         }
 
     }
     public static void test(Joystick driveStick){
-        System.out.println(getX());
+        printX();
         
     }
 
-    public static void driveToHatchTarget(double x, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
+    public static void driveToHatchTarget(Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
         while (!driveStick.getRawButton(2)) {
             //Drivetrain.drive(0.0, .25);
-            alignWithTarget(testx);
-            double distance = findDistanceHatch(y);
+            alignWithTarget();
+            double distance = findDistanceHatch();
             double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
             // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
             //     Drivetrain.drive(.25, 0);
             // } 
         } 
     }
-    public static void driveToRocketFaceTarget(double x, double y, Joystick driveStick) { // moves robot towards a rocket face target
+    public static void driveToRocketFaceTarget(Joystick driveStick) { // moves robot towards a rocket face target
         while (!driveStick.getRawButton(2)) {
-            alignWithTarget(x);
-            double distance = findDistanceRocketFace(y);
+            alignWithTarget();
+            double distance = findDistanceRocketFace();
             double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
             // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
             //     Drivetrain.drive(.25, 0);
             // }
         } // nice
     }
-    public static void alignWithTarget(double x) { // points robot at target, leaving a "degree of freedom" on both sides of center
+    public static void alignWithTarget() { // points robot at target, leaving a "degree of freedom" on both sides of center
         //values of x range [-27,27]
-        while(x < -1) { // target is to the left
+        while(getX() < -1) { // target is to the left
             Drivetrain.drive(.25, .25); // turn right until aligned
         }
-        while(x > 1) { // target to the right
+        while(getX() > 1) { // target to the right
             Drivetrain.drive(.25, -.25); // turn left until aligned
         }
-        if (x > -1 && x < 1) {
+        if (getX() > -1 && getX() < 1) {
             System.out.println("Robot alligned");
         }
+        Drivetrain.drive(0.0, 0.0);
     }
-    public static double findDistanceHatch(double y) { // INCHES, for cargo ship and rocket hatches
+    public static double findDistanceHatch() { // INCHES, for cargo ship and rocket hatches
         double distance = 0;
-        double a2 = Math.toRadians(y);
+        double a2 = Math.toRadians(getY());
         double heightDifference = hatchHeight - cameraHeight;
         double fullAngle = a2 + cameraAngle;
         double demoninator = Math.tan(fullAngle);
@@ -110,9 +111,9 @@ public class VisionSystem {
         }
         return distance;
     }
-    public static double findDistanceRocketFace(double y) { // INCHES, for rocket face
+    public static double findDistanceRocketFace() { // INCHES, for rocket face
         double distance = 0;
-        double a2 = Math.toRadians(y);
+        double a2 = Math.toRadians(getY());
         double heightDifference = rocketFaceHeight - cameraHeight;
         double fullAngle = a2 + cameraAngle;
         double demoninator = Math.tan(fullAngle);
@@ -145,6 +146,6 @@ public class VisionSystem {
     // hi fellow programmers. yall ugly
     // excuse me ma'am that is very offensive to us programmers :( 
     public static void printX() {
-        System.out.println("x offset - " + x);
+        System.out.println("x offset - " + getX());
     }
 }
