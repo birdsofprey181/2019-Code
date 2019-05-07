@@ -6,10 +6,28 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick; 
 
 public class VisionSystem {
-    static double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);
-    static double x = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
-    static double y = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0);
-    static double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
+
+    static private NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    static private NetworkTableEntry tx = table.getEntry("tx");
+    static private NetworkTableEntry ty = table.getEntry("ty");
+    static private NetworkTableEntry ta = table.getEntry("ta");
+    static private NetworkTableEntry ledMode = table.getEntry("ledMode");
+
+    static public double getY() {
+        return ty.getDouble(0.0);
+    }
+
+    static public double getX() {
+        return tx.getDouble(0.0);
+    }
+
+    static public double getA() {
+        return ta.getDouble(0.0);
+    }
+
+    static public double getledMode() {
+        return ledMode.getDouble(0.0);
+    }
 
     static double testx = 10;
     static double testDistance = 24;
@@ -33,27 +51,25 @@ public class VisionSystem {
         printX();
         if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
             ledOn();
-            //test(driveStick);
-            driveToHatchTarget(x, y, driveStick);
+            test(driveStick);
+            //driveToHatchTarget(getX(), getY(), driveStick);
             ledOff();
         } else if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
             ledOn();
-            driveToRocketFaceTarget(x, y, driveStick);
+            driveToRocketFaceTarget(getX(), getY(), driveStick);
             ledOff();
         }
 
     }
     public static void test(Joystick driveStick){
-        while (!driveStick.getRawButtonPressed(2)) {
-            Drivetrain.drive(0.0, .5);
-        }
+        System.out.println(getX());
         
     }
 
-    public static void driveToHatchTarget(double tx, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
+    public static void driveToHatchTarget(double x, double y, Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
         while (!driveStick.getRawButton(2)) {
             //Drivetrain.drive(0.0, .25);
-            alignWithTarget(x);
+            alignWithTarget(testx);
             double distance = findDistanceHatch(y);
             double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
             // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
