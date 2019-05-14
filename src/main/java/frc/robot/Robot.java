@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
     //Pneumatics.liftFront(driveStick);
     //Pneumatics.liftRear(driveStick);
     Elevator.elevControl(-opStick.getY());
-    Drivetrain.drive(driveStick.getY(), driveStick.getZ());
+    Drivetrain.drive(driveStick.getY(), driveStick.getZ()*driveStick.getThrottle());
     // Elevator.elevEncoderTest(opStick);
     // Elevator.elevBrake();
     Elevator.wristRead(opStick);
@@ -133,7 +133,7 @@ public class Robot extends TimedRobot {
 
   // hello world
   // will is the gitmaster
-  
+  // whos that?
   /**
    * This function is called periodically during test mode.
    */
