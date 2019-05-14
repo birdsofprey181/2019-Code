@@ -31,6 +31,7 @@ public class VisionSystem {
 
     static double testx = 10;
     static double testDistance = 24;
+    static double deadZone = 1; // the amount of degrees on either side of the target that the limelight that is considered "on target"
 
     // measurements to find distance in inches and radians
     static double cameraHeight = 14; // CHANGE when limelight is mounted
@@ -89,16 +90,16 @@ public class VisionSystem {
     }
     public static void alignWithTarget() { // points robot at target, leaving a "degree of freedom" on both sides of center
         //values of x range [-27,27]
-        while(getX() < -1) { // target is to the left
+        if (getX() < -deadZone) { // target is to the left
             Drivetrain.drive(.25, .25); // turn right until aligned
-        }
-        while(getX() > 1) { // target to the right
+
+        } else if (getX() > deadZone) { // target to the right
             Drivetrain.drive(.25, -.25); // turn left until aligned
-        }
-        if (getX() > -1 && getX() < 1) {
+
+        } else {
+            Drivetrain.drive(0, 0);
             System.out.println("Robot alligned");
         }
-        Drivetrain.drive(0.0, 0.0);
     }
     public static double findDistanceHatch() { // INCHES, for cargo ship and rocket hatches
         double distance = 0;
