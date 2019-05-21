@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
     //Pneumatics.liftFront(driveStick);
     //Pneumatics.liftRear(driveStick);
     Elevator.elevControl(-opStick.getY());
-    Drivetrain.drive(driveStick.getY(), driveStick.getZ()*driveStick.getThrottle());
+    Drivetrain.drive(driveStick.getY(), driveStick.getZ()* (-.5*driveStick.getThrottle() + .5));
     // Elevator.elevEncoderTest(opStick);
     // Elevator.elevBrake();
     Elevator.wristRead(opStick);
