@@ -129,6 +129,7 @@ public class Robot extends TimedRobot {
     VisionSystem.operateVisionTracking(driveStick);
     Elevator.controlWrist(opStick);
     VisionSystem.changeLEDStatus(driveStick);
+    //VisionSystem.printHatchDistance();
   }
 
   // hello world

@@ -53,7 +53,8 @@ public class VisionSystem {
         if (driveStick.getRawButton(4)) { // button 4 aligns with hatch
             ledOn();
             //test(driveStick);
-            driveToHatchTarget(driveStick);
+            alignWithTarget();
+            //driveToHatchTarget(driveStick);
             ledOff();
         } else if (driveStick.getRawButton(6)) { // buttton 6 aligns to rocket face
             ledOn();
@@ -66,27 +67,27 @@ public class VisionSystem {
         printX();
         
     }
-
+    // nice
     public static void driveToHatchTarget(Joystick driveStick) { // moves robot towards a cargo ship or rocket hatch target
-        while (!driveStick.getRawButton(2)) {
+        if (!driveStick.getRawButton(2)) {
             //Drivetrain.drive(0.0, .25);
             alignWithTarget();
             double distance = findDistanceHatch();
             double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
-            // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
+            // if (distance > stopAtDistance && !driveStick.getRawButton(2)) {
             //     Drivetrain.drive(.25, 0);
             // } 
         } 
     }
     public static void driveToRocketFaceTarget(Joystick driveStick) { // moves robot towards a rocket face target
-        while (!driveStick.getRawButton(2)) {
+        if (!driveStick.getRawButton(2)) {
             alignWithTarget();
             double distance = findDistanceRocketFace();
             double stopAtDistance = 40; //inches that limelight is from target, CHANGE when limelight is mounted
-            // while(distance > stopAtDistance && !driveStick.getRawButton(2)) {
+            // if (distance > stopAtDistance && !driveStick.getRawButton(2)) {
             //     Drivetrain.drive(.25, 0);
             // }
-        } // nice
+        }
     }
     public static void alignWithTarget() { // points robot at target, leaving a "degree of freedom" on both sides of center
         //values of x range [-27,27]
@@ -96,10 +97,9 @@ public class VisionSystem {
         } else if (getX() > deadZone) { // target to the right
             Drivetrain.drive(.25, -.25); // turn left until aligned
 
-        } else {
-            Drivetrain.drive(0, 0);
-            System.out.println("Robot alligned");
         }
+        //Drivetrain.drive(0, 0);
+        System.out.println("Robot alligned");
     }
     public static double findDistanceHatch() { // INCHES, for cargo ship and rocket hatches
         double distance = 0;
@@ -111,6 +111,9 @@ public class VisionSystem {
             distance = heightDifference/demoninator;
         }
         return distance;
+    }
+    public static void printHatchDistance() {
+        System.out.println("Hatch at " + findDistanceHatch() + " in");
     }
     public static double findDistanceRocketFace() { // INCHES, for rocket face
         double distance = 0;
